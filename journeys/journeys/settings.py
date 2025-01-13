@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -43,7 +44,7 @@ ROOT_URLCONF = 'journeys.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ BASE_DIR / 'journeys/templates' , BASE_DIR / 'app/templates'],
+        'DIRS': [BASE_DIR / 'journeys/templates', BASE_DIR / 'app/templates', BASE_DIR / 'accounts/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
