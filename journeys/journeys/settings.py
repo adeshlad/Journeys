@@ -44,7 +44,7 @@ ROOT_URLCONF = 'journeys.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'journeys/templates', BASE_DIR / 'app/templates', BASE_DIR / 'accounts/templates'],
+        'DIRS': [BASE_DIR / 'journeys/templates/journeys', BASE_DIR / 'app/templates/app', BASE_DIR / 'accounts/templates/accounts'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

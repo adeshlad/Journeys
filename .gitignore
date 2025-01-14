@@ -1,3 +1,5 @@
 journeys/journeys/__pycache__
 journeys/app/__pycache__
 journeys/app/migrations/__pycache__
+journeys/accounts/__pycache__
+journeys/accounts/migrations/__pycache__
