@@ -5,7 +5,7 @@ from autoslug import AutoSlugField
 
 
 class Journey(models.Model):
-    title = models.CharField(max_length=250, default="None")
+    title = models.CharField(max_length=100, default="None")
     slug = AutoSlugField(populate_from='title', unique=True, default='noneclear')
 
     start_date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
@@ -13,7 +13,7 @@ class Journey(models.Model):
 
 
 class Location(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
 
     latitude = models.FloatField()
     longitude = models.FloatField()
