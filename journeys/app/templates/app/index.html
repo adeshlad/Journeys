@@ -2,6 +2,6 @@
 
 {% block content %}
   <h1>from template</h1>
-  <button class="button-6" role="button">New</button>
-  <button class="button-6" role="button">Past</button>
+  <button class="button-6" role="button"><a href="{% url 'accounts:signup' %}">Signup</a></button>
+  <button class="button-6" role="button">Signin</button>
 {% endblock %}

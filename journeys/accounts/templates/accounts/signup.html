@@ -1,32 +1,61 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <form class="signup-form" action="/" method="post">
+  <form class="signup-form" action="/accounts/signup/" method="post">
     {% csrf_token %}
 
     <label for="first_name">first_name:</label>
-    <input type="text" id="first_name" name="first_name" required /><br />
+    <input type="text" id="first_name" name="first_name" required />
+    <br />
 
     <label for="last_name">last_name:</label>
-    <input type="text" id="last_name" name="last_name" required /><br />
-
-    <label for="user_name">user_name:</label>
-    <input type="text" id="user_name" name="user_name" required /><br />
+    <input type="text" id="last_name" name="last_name" required />
+    <br />
+    
+    <label for="gender">gender:</label>
+    <select name="gender" required>
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+      <option value="O">Other</option>
+    </select>
+    <br />
 
     <label for="birth_date">birth_date:</label>
-    <input type="date" id="birth_date" name="birth_date" required /><br />
+    <input type="date" id="birth_date" name="birth_date" required />
+    <br />
+
+    <label for="user_name">user_name:</label>
+    <input type="text" id="user_name" name="user_name" required />
+    {% if user_name_exists %}
+      user name already taken
+    {% endif %}
+    <br />
 
     <label for="email">email:</label>
-    <input type="email" id="email" name="email" required /><br />
+    <input type="email" id="email" name="email" required />
+    {% if email_exists %}
+      email already used
+    {% endif %}
+    <br />
 
     <label for="phone_number">phone_number:</label>
-    <input type="number" id="phone_number" name="phone_number" required /><br />
+    <input type="number" id="phone_number" name="phone_number" required />
+    {% if phone_number_exists %}
+      phone number alread used
+    {% endif %}
+    <br />
 
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required /><br />
+    <input type="password" id="password" name="password" required />
+    <br />
 
     <label for="confirm_password">Confirm Password:</label>
-    <input type="password" id="confirm_password" name="confirm_password" required /><br />
+    <input type="password" id="confirm_password" name="confirm_password" required />
+    <br />
+    {% if password_mismatched %}
+      password is mismatched
+      <br />
+    {% endif %}
 
     <button type="submit">Signup</button>
     <button type="reset">Reset</button>

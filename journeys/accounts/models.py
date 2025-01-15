@@ -5,21 +5,22 @@ from django.contrib.auth.hashers import make_password, check_password
 
 
 class User(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
 
     GENDER_CHOICES = [('M', 'Male'), ('F', 'Female'), ('O', 'Other')]
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    birth_date = models.DateField(auto_now_add=True)
 
-    user_name = models.CharField(max_length=100, unique=True)
-    profile_pic = models.ImageField(
-        upload_to='profile_pics/', default='default_profile_pic.jpg', blank=True, null=True)
+    birth_date = models.DateField(editable=True)
 
-    email = models.EmailField(max_length=100, unique=True)
+    user_name = models.CharField(max_length=255, unique=True)
+    profile_photo = models.ImageField(upload_to='users/profile_photos/', blank=True, null=True, default='default_profile_photo.jpg')
+
+    email = models.EmailField(max_length=255, unique=True)
     phone_number = models.CharField(max_length=10, unique=True)
 
-    password = models.CharField(max_length=128)
+    password = models.CharField(max_length=255)
+
 
     def set_password(self, raw_password):
         self.password = make_password(raw_password)

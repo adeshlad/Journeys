@@ -5,21 +5,29 @@ from autoslug import AutoSlugField
 
 
 class Journey(models.Model):
-    title = models.CharField(max_length=100, default="None")
-    slug = AutoSlugField(populate_from='title', unique=True, default='noneclear')
+    title = models.CharField(max_length=255, default="Untitled")
+    slug = AutoSlugField(populate_from='title', unique=True, default='untitled')
 
-    start_date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
-    total_days = models.IntegerField()
+    start_date_time = models.DateTimeField(blank=True, null=True)
+    total_days = models.IntegerField(blank=True, null=True)
+
+    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, related_name='journeys')
 
 
 class Location(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=255, default='Untitled')
 
-    latitude = models.FloatField()
-    longitude = models.FloatField()
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
 
-    arrival = models.DateTimeField(auto_now=False, auto_now_add=False)
-    departure = models.DateTimeField(auto_now=False, auto_now_add=False)
+    arrival = models.DateTimeField(blank=True, null=True)
+    departure = models.DateTimeField(blank=True, null=True)
 
-    journey = models.ForeignKey(
-        'Journey', on_delete=models.CASCADE, related_name='locations')
+    journey = models.ForeignKey('app.Journey', on_delete=models.CASCADE, related_name='locations')
+
+
+class Location_Photo(models.Model):
+    photo = models.ImageField(upload_to='locations/location_photos/', blank=True, null=True, default='default_location_photo.jpg')
+    caption = models.CharField(max_length=500, blank=True, null=True)
+
+    location = models.ForeignKey("app.Location", on_delete=models.CASCADE, related_name='photos')
