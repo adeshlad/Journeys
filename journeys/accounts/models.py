@@ -14,7 +14,7 @@ class User(models.Model):
     birth_date = models.DateField(editable=True)
 
     user_name = models.CharField(max_length=255, unique=True)
-    profile_photo = models.ImageField(upload_to='users/profile_photos/', blank=True, null=True, default='default_profile_photo.jpg')
+    profile_photo = models.ImageField(upload_to='users/profile_photos/', blank=True, null=True, default='users/profile_photos/default_profile_photo.jpg')
 
     email = models.EmailField(max_length=255, unique=True)
     phone_number = models.CharField(max_length=10, unique=True)

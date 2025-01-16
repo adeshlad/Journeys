@@ -1,4 +1,5 @@
 journeys/journeys/__pycache__
+journeys/media
 journeys/app/__pycache__
 journeys/app/migrations
 journeys/accounts/__pycache__

@@ -27,7 +27,7 @@ class Location(models.Model):
 
 
 class Location_Photo(models.Model):
-    photo = models.ImageField(upload_to='locations/location_photos/', blank=True, null=True, default='default_location_photo.jpg')
+    photo = models.ImageField(upload_to='locations/location_photos/', blank=True, null=True, default='locations/location_photos/default_location_photo.jpg')
     caption = models.CharField(max_length=500, blank=True, null=True)
 
     location = models.ForeignKey("app.Location", on_delete=models.CASCADE, related_name='photos')

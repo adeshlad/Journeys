@@ -32,13 +32,17 @@ def signup(request):
         user.first_name = first_name
         user.last_name = last_name
         user.gender = gender
+
+        if 'profile_photo' in request.FILES:
+            user.profile_photo = request.FILES['profile_photo']
+
         user.birth_date = birth_date
         user.user_name = user_name
         user.email = email
         user.phone_number = phone_number
         user.set_password(password)
-        
         user.save()
+
         return render(request, 'signup_successfull.html')
 
     elif request.method == 'GET':
