@@ -1,6 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .models import User
 
 # Create your views here.
@@ -20,7 +20,8 @@ def signup(request):
 
         user_name_exists = User.objects.filter(user_name=user_name).exists()
         email_exists = User.objects.filter(email=email).exists()
-        phone_number_exists = User.objects.filter(phone_number=phone_number).exists()
+        phone_number_exists = User.objects.filter(
+            phone_number=phone_number).exists()
         password_mismatched = password != confirm_password
 
         if user_name_exists or email_exists or phone_number_exists or password_mismatched:
@@ -44,7 +45,9 @@ def signup(request):
         user.set_password(password)
         user.save()
 
-        return render(request, 'signup_successful.html')
+        login(request, user)
+
+        return redirect('app:index')
 
     elif request.method == 'GET':
         return render(request, 'signup.html', {'user_name_exists': False,
@@ -61,9 +64,15 @@ def signin(request):
         user = authenticate(request, user_name=user_name, password=password)
         if user is not None:
             login(request, user)
-            return render(request, 'signin_successful.html')
+            return redirect('app:index')
 
         return render(request, 'signin.html', {'invalid_credentials': True})
 
     elif request.method == 'GET':
         return render(request, 'signin.html', {'invalid_credentials': False})
+
+
+def signout(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('app:index')
