@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form class="signin-form" action="{% url 'accounts:signin' %}" method="post">
+    {% csrf_token %}
+
+    {% if invalid_credentials %}
+    invalid_credentials
+      <br />
+    {% endif %}
+
+    <label for="user_name">user_name:</label>
+    <input type="text" id="user_name" name="user_name" maxlength="255" required />
+    <br />
+
+    <label for="password">password:</label>
+    <input type="password" id="password" name="password" maxlength="255" required />
+    <br />
+
+    <button type="submit">Signup</button>
+    <button type="reset">Reset</button>
+  </form>
+{% endblock %}

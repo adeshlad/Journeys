@@ -3,5 +3,5 @@
 {% block content %}
   <h1>from template</h1>
   <button class="button-6" role="button"><a href="{% url 'accounts:signup' %}">Signup</a></button>
-  <button class="button-6" role="button">Signin</button>
+  <button class="button-6" role="button"><a href="{% url 'accounts:signin' %}">Signin</a></button>
 {% endblock %}

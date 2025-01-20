@@ -1,9 +1,10 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth import authenticate, login
 from .models import User
 
-
 # Create your views here.
+
 
 def signup(request):
     if request.method == 'POST':
@@ -43,10 +44,26 @@ def signup(request):
         user.set_password(password)
         user.save()
 
-        return render(request, 'signup_successfull.html')
+        return render(request, 'signup_successful.html')
 
     elif request.method == 'GET':
         return render(request, 'signup.html', {'user_name_exists': False,
                                                'email_exists': False,
                                                'phone_number_exists': False,
                                                'password_mismatched': False})
+
+
+def signin(request):
+    if request.method == 'POST':
+        user_name = request.POST['user_name']
+        password = request.POST['password']
+
+        user = authenticate(request, user_name=user_name, password=password)
+        if user is not None:
+            login(request, user)
+            return render(request, 'signin_successful.html')
+
+        return render(request, 'signin.html', {'invalid_credentials': True})
+
+    elif request.method == 'GET':
+        return render(request, 'signin.html', {'invalid_credentials': False})
