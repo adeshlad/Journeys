@@ -4,3 +4,4 @@ journeys/app/__pycache__
 journeys/app/migrations
 journeys/accounts/__pycache__
 journeys/accounts/migrations
+.vscode/

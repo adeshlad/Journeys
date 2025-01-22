@@ -1,7 +1,9 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.db import models
 from .models import User
+import re
 
 # Create your views here.
 
@@ -10,18 +12,19 @@ def signup(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
-        gender = request.POST['gender']
+
         birth_date = request.POST['birth_date']
+
         user_name = request.POST['user_name']
         email = request.POST['email']
         phone_number = request.POST['phone_number']
+
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
 
         user_name_exists = User.objects.filter(user_name=user_name).exists()
         email_exists = User.objects.filter(email=email).exists()
-        phone_number_exists = User.objects.filter(
-            phone_number=phone_number).exists()
+        phone_number_exists = User.objects.filter(phone_number=phone_number).exists()
         password_mismatched = password != confirm_password
 
         if user_name_exists or email_exists or phone_number_exists or password_mismatched:
@@ -33,12 +36,13 @@ def signup(request):
         user = User()
         user.first_name = first_name
         user.last_name = last_name
-        user.gender = gender
+
+        if birth_date != "":
+            user.birth_date = birth_date
 
         if 'profile_photo' in request.FILES:
             user.profile_photo = request.FILES['profile_photo']
-
-        user.birth_date = birth_date
+        
         user.user_name = user_name
         user.email = email
         user.phone_number = phone_number

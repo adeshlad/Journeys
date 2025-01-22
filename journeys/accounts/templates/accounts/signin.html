@@ -1,23 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-  <form class="signin-form" action="{% url 'accounts:signin' %}" method="post">
-    {% csrf_token %}
+  <main class="flex align-items-center justify-content-center">
+    <section id="auth" class="flex direction-column">
+      {% if user.is_authenticated %}
+        <div class="panel register flex justify-content-center">
+          <form action="{% url 'accounts:signout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Signout</button>
+          </form>
+        </div>
+      {% endif %}
 
-    {% if invalid_credentials %}
-    invalid_credentials
-      <br />
-    {% endif %}
+      <div class="panel login flex direction-column">
+        <form action="{% url 'accounts:signin' %}" method="post">
+          {% csrf_token %}
 
-    <label for="user_name">user_name:</label>
-    <input type="text" id="user_name" name="user_name" maxlength="255" required />
-    <br />
+          <input name="user_name" type="text" placeholder="User Name" />
+          <input name="password" type="password" placeholder="Password" />
+          {% if invalid_credentials %}
+            <p>Incorrect User Name or Password</p>
+          {% endif %}
+          <button type="submit">Signin</button>
+        </form>
+      </div>
 
-    <label for="password">password:</label>
-    <input type="password" id="password" name="password" maxlength="255" required />
-    <br />
-
-    <button type="submit">Signup</button>
-    <button type="reset">Reset</button>
-  </form>
+      <div class="panel register flex justify-content-center">
+        <p>Don't have an account?</p>
+        <a href="{% url 'accounts:signup' %}">Signup</a>
+      </div>
+    </section>
+  </main>
 {% endblock %}

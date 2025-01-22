@@ -14,19 +14,7 @@
   </head>
 
   <body>
-    <nav>
-      {% if user.is_authenticated %}
-        <form class="signup-form" action="{% url 'accounts:signout' %}" method="post">
-          {% csrf_token %}
-          <button class="button-6" type="submit">Signout</button>
-        </form>
-      {% else %}
-        <a href="{% url 'accounts:signup' %}"><button class="button-6" role="button">Signup</button></a>
-        <a href="{% url 'accounts:signin' %}"><button class="button-6" role="button">Signin</button></a>
-      {% endif %}
-      <a href="{% url 'admin:index' %}"><button class="button-6" role="button">Admin</button></a>
-    </nav>
-    <div class="wrapper">
+    <div class="content">
       {% block content %}
 
       {% endblock %}
