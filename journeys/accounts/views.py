@@ -1,9 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.db import models
 from .models import User
-import re
 
 # Create your views here.
 

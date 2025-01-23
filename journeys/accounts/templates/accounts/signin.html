@@ -11,25 +11,25 @@
             <button type="submit">Signout</button>
           </form>
         </div>
+      {% else %}
+        <div class="panel login flex direction-column">
+          <form action="{% url 'accounts:signin' %}" method="post">
+            {% csrf_token %}
+
+            <input name="user_name" type="text" placeholder="User Name" />
+            <input name="password" type="password" placeholder="Password" />
+            {% if invalid_credentials %}
+              <p>Incorrect User Name or Password</p>
+            {% endif %}
+            <button type="submit">Signin</button>
+          </form>
+        </div>
+
+        <div class="panel register flex justify-content-center">
+          <p>Don't have an account?</p>
+          <a href="{% url 'accounts:signup' %}">Signup</a>
+        </div>
       {% endif %}
-
-      <div class="panel login flex direction-column">
-        <form action="{% url 'accounts:signin' %}" method="post">
-          {% csrf_token %}
-
-          <input name="user_name" type="text" placeholder="User Name" />
-          <input name="password" type="password" placeholder="Password" />
-          {% if invalid_credentials %}
-            <p>Incorrect User Name or Password</p>
-          {% endif %}
-          <button type="submit">Signin</button>
-        </form>
-      </div>
-
-      <div class="panel register flex justify-content-center">
-        <p>Don't have an account?</p>
-        <a href="{% url 'accounts:signup' %}">Signup</a>
-      </div>
     </section>
   </main>
 {% endblock %}
