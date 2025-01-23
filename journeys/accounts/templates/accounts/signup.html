@@ -15,6 +15,11 @@
         <div class="panel login flex direction-column">
           <form action="{% url 'accounts:signup' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+
+            {% if next != '/' %}
+              <input type="hidden" name="next" value="{{ next }}" />
+            {% endif %}
+            
             <input required name="first_name" type="text" placeholder="First Name *" />
             <input required name="last_name" type="text" placeholder="Last Name *" />
                         
@@ -47,7 +52,7 @@
         </div>
         <div class="panel register flex justify-content-center">
           <p>Already have an account?</p>
-          <a href="{% url "accounts:signin" %}">Signin</a>
+          <a href="{% url "accounts:signin" %}?next={{ next }}">Signin</a>
         </div>
       {% endif %}
     </section>

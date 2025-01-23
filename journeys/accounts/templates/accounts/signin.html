@@ -16,6 +16,10 @@
           <form action="{% url 'accounts:signin' %}" method="post">
             {% csrf_token %}
 
+            {% if next != '/' %}
+              <input type="hidden" name="next" value="{{ next }}" />
+            {% endif %}
+
             <input name="user_name" type="text" placeholder="User Name" />
             <input name="password" type="password" placeholder="Password" />
             {% if invalid_credentials %}
@@ -27,7 +31,7 @@
 
         <div class="panel register flex justify-content-center">
           <p>Don't have an account?</p>
-          <a href="{% url 'accounts:signup' %}">Signup</a>
+          <a href="{% url 'accounts:signup' %}?next={{ next }}">Signup</a>
         </div>
       {% endif %}
     </section>
