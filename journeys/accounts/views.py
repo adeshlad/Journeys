@@ -2,6 +2,8 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
 from .models import User
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -84,6 +86,7 @@ def signin(request):
                                                'invalid_credentials': False})
 
 
+@login_required()
 def signout(request):
     if request.method == 'POST':
         logout(request)
