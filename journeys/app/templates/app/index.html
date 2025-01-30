@@ -5,10 +5,10 @@
   <main class="flex align-items-center justify-content-center">
     <section id="auth" class="flex direction-column">
       <div class="panel login flex direction-column">
-        <form action="">
-          <a href="#"><button>Signin</button></a>
-          <a href="#"><button>Signin</button></a>
-        </form>
+        <div class="button-div">
+          <a href="{% url "app:add_new_journey" %}"><button>Add New Journey</button></a>
+          <a href=""><button>View Journies</button></a>
+        </div>
       </div>
     </section>
   </main>

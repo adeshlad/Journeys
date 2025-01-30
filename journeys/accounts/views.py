@@ -54,6 +54,9 @@ def signup(request):
         return redirect('app:index')
 
     elif request.method == 'GET':
+        if request.user.is_authenticated:
+            return render(request, 'signout.html')
+
         next = request.GET.get('next', '')
         return render(request, 'signup.html', {'next': next,
                                                'user_name_exists': False,
@@ -81,6 +84,9 @@ def signin(request):
                                                'invalid_credentials': True})
 
     elif request.method == 'GET':
+        if request.user.is_authenticated:
+            return render(request, 'signout.html')
+
         next = request.GET.get('next', '/')
         return render(request, 'signin.html', {'next': next,
                                                'invalid_credentials': False})

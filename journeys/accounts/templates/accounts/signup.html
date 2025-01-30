@@ -4,57 +4,49 @@
 {% block content %}
   <main class="flex align-items-center justify-content-center">
     <section id="auth" class="flex direction-column">
-      {% if user.is_authenticated %}
-        <div class="panel register flex justify-content-center">
-          <form action="{% url 'accounts:signout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Signout</button>
-          </form>
-        </div>
-      {% else %}
-        <div class="panel login flex direction-column">
-          <form action="{% url 'accounts:signup' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
+      <div class="panel login flex direction-column">
+        <form action="{% url 'accounts:signup' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
 
-            {% if next != '/' %}
-              <input type="hidden" name="next" value="{{ next }}" />
-            {% endif %}
-            
-            <input required name="first_name" type="text" placeholder="First Name *" />
-            <input required name="last_name" type="text" placeholder="Last Name *" />
-                        
-            <input required name="user_name" type="text" placeholder="User Name *" />
-            {% if user_name_exists %}
-              <p>User Name already exists</p>
-            {% endif %}
-            
-            <input name="profile_photo" type="file" accept="image/*" /><br />
-            
-            <input required name="email" type="email" placeholder="E-Mail *" />
-            {% if email_exists %}
-              <p>Email already exists</p>
-            {% endif %}
-            
-            <input required name="phone_number" type="text" pattern="\d{10}" maxlength="10" placeholder="Phone Number *" />
-            {% if phone_number_exists %}
-              <p>Phone Number already exists</p>
-            {% endif %}
-            
-            <input required name="password" type="password" placeholder="Password *" />
-            <input required name="confirm_password" type="password" placeholder="Confirm Password *" />
-            {% if password_mismatched %}
-              <p>Password is mismatched</p>
-            {% endif %}
-            
-            <button type="submit">Signup</button>
-            <button type="reset">Reset</button>
-          </form>
-        </div>
-        <div class="panel register flex justify-content-center">
-          <p>Already have an account?</p>
-          <a href="{% url "accounts:signin" %}?next={{ next }}">Signin</a>
-        </div>
-      {% endif %}
+          {% if next != '/' %}
+            <input type="hidden" name="next" value="{{ next }}" />
+          {% endif %}
+
+          <input required name="first_name" type="text" placeholder="First Name *" />
+          <input required name="last_name" type="text" placeholder="Last Name *" />
+                      
+          <input required name="user_name" type="text" placeholder="User Name *" />
+          {% if user_name_exists %}
+            <p>User Name already exists</p>
+          {% endif %}
+          
+          <input name="profile_photo" type="file" accept="image/*" /><br />
+          
+          <input required name="email" type="email" placeholder="E-Mail *" />
+          {% if email_exists %}
+            <p>Email already exists</p>
+          {% endif %}
+          
+          <input required name="phone_number" type="text" pattern="\d{10}" maxlength="10" placeholder="Phone Number *" />
+          {% if phone_number_exists %}
+            <p>Phone Number already exists</p>
+          {% endif %}
+          
+          <input required name="password" type="password" placeholder="Password *" />
+          <input required name="confirm_password" type="password" placeholder="Confirm Password *" />
+          {% if password_mismatched %}
+            <p>Password is mismatched</p>
+          {% endif %}
+          
+          <button type="submit">Signup</button>
+          <button type="reset">Reset</button>
+        </form>
+      </div>
+      
+      <div class="panel register flex justify-content-center">
+        <p>Already have an account?</p>
+        <a href="{% url "accounts:signin" %}?next={{ next }}">Signin</a>
+      </div>
     </section>
   </main>
 {% endblock %}

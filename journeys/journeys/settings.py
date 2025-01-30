@@ -44,7 +44,7 @@ ROOT_URLCONF = 'journeys.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'journeys/templates/journeys', BASE_DIR / 'app/templates/app', BASE_DIR / 'accounts/templates/accounts'],
+        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'app/templates/app', BASE_DIR / 'accounts/templates/accounts'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,9 +111,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     BASE_DIR / 'static',
-)
+]
 
 MEDIA_URL = 'media/'
 

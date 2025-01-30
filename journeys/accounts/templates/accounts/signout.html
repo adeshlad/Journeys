@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <main class="flex align-items-center justify-content-center">
+    <section id="auth" class="flex direction-column">
+      <div class="panel login flex justify-content-center">
+        <form action="{% url 'accounts:signout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Signout</button>
+        </form>
+      </div>
+    </section>
+  </main>
+{% endblock %}
