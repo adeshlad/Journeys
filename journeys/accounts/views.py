@@ -97,3 +97,7 @@ def signout(request):
     if request.method == 'POST':
         logout(request)
         return redirect('app:index')
+    
+    elif request.method == 'GET':
+        if request.user.is_authenticated:
+            return render(request, 'signout.html')

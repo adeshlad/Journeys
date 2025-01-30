@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'accounts/css/styles.css' %}" />
+{% endblock %}
+
 {% block content %}
   <main class="flex align-items-center justify-content-center">
     <section id="auth" class="flex direction-column">
@@ -12,12 +16,12 @@
             <input type="hidden" name="next" value="{{ next }}" />
           {% endif %}
 
-          <input name="user_name" type="text" placeholder="User Name" />
-          <input name="password" type="password" placeholder="Password" />
+          <input required name="user_name" type="text" placeholder="User Name" />
+          <input required name="password" type="password" placeholder="Password" />
           {% if invalid_credentials %}
             <p>Incorrect User Name or Password</p>
           {% endif %}
-          <button type="submit">Signin</button>
+          <button type="submit" id="signin">Signin</button>
         </form>
       </div>
 

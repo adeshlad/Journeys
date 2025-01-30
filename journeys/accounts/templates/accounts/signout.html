@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'accounts/css/styles.css' %}" />
+{% endblock %}
+
 {% block content %}
   <main class="flex align-items-center justify-content-center">
     <section id="auth" class="flex direction-column">
       <div class="panel login flex justify-content-center">
         <form action="{% url 'accounts:signout' %}" method="post">
           {% csrf_token %}
-          <button type="submit">Signout</button>
+          <button type="submit" id="signout">Signout</button>
         </form>
       </div>
     </section>

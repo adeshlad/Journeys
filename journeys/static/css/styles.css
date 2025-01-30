@@ -1,3 +1,11 @@
+* {
+    border: none;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #fafafa;
     height: 100vh;
@@ -5,4 +13,49 @@ body {
 
 a {
     text-decoration: none;
+}
+
+form input {
+    background-color: #fafafa;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    height: 40px;
+    color: #808080;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    width: 100%;
+}
+
+form input:focus {
+    border: 1px solid #808080;
+    outline: none;
+}
+
+button {
+    background-color: #0095f6;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: bold;
+    height: 40px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+th {
+    font-weight: normal;
+}
+
+td {
+    text-align: center;
 }

@@ -1,0 +1,46 @@
+.main {
+  height: 100vh;
+  margin: auto;
+  max-width: 935px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container{
+  background-color: white;
+  border: 1px solid #dbdbdb;
+  padding: 10px 10px 0 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container{
+  width: 100%;
+  padding: 20px 20px;
+}
+
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+}
+
+button {
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+  height: 40px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* #signin, #signup{
+  background-color: #0095f6;
+} */
+
+#remove{
+  background-color: #f60000;
+}

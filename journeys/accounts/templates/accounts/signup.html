@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'accounts/css/styles.css' %}" />
+{% endblock %}
+
 {% block content %}
   <main class="flex align-items-center justify-content-center">
     <section id="auth" class="flex direction-column">
@@ -38,8 +42,8 @@
             <p>Password is mismatched</p>
           {% endif %}
           
-          <button type="submit">Signup</button>
-          <button type="reset">Reset</button>
+          <button type="submit" id="signup">Signup</button>
+          <button type="reset" id="reset">Reset</button>
         </form>
       </div>
       
