@@ -35,6 +35,15 @@ form {
   width: 100%;
 }
 
+form p {
+  display: inline;
+  font-size: 14px;
+}
+
+form #input-profile-photo{
+  width: 70.5%;
+}
+
 .register,
 form {
   padding: 30px 20px;
@@ -63,10 +72,12 @@ button {
 
 #signin, #signup{
   background-color: #0095f6;
-  width: 49%;
 }
 
 #signout, #reset{
   background-color: #f60000;
+}
+
+#signup, #reset{
   width: 49%;
 }

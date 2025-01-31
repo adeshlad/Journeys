@@ -20,12 +20,13 @@
   padding: 20px 20px;
 }
 
-.form-step {
-  display: none;
+form p {
+  display: inline;
+  font-size: 14px;
 }
 
-.form-step.active {
-  display: block;
+form #start_date{
+  width: 78.75%;
 }
 
 button {
@@ -37,10 +38,14 @@ button {
   margin-bottom: 10px;
 }
 
-/* #signin, #signup{
+#submit{
   background-color: #0095f6;
-} */
+}
 
-#remove{
+#reset{
   background-color: #f60000;
+}
+
+#submit, #reset{
+  width: 49.5%;
 }

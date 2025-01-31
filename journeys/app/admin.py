@@ -4,5 +4,5 @@ from .models import Location, Journey
 # Register your models here.
 
 
-admin.site.register(Location)
 admin.site.register(Journey)
+admin.site.register(Location)

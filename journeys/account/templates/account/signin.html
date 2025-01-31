@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block stylesheet %}
-  <link rel="stylesheet" href="{% static 'accounts/css/styles.css' %}" />
+  <link rel="stylesheet" href="{% static 'account/css/styles.css' %}" />
 {% endblock %}
 
 {% block content %}
   <main class="flex align-items-center justify-content-center">
     <section id="auth" class="flex direction-column">
       <div class="panel login flex direction-column">
-        <form action="{% url 'accounts:signin' %}" method="post">
+        <form action="{% url 'account:signin' %}" method="post">
           {% csrf_token %}
 
           {% if next != '/' %}
@@ -27,7 +27,7 @@
 
       <div class="panel register flex justify-content-center">
         <p>Don't have an account?</p>
-        <a href="{% url 'accounts:signup' %}?next={{ next }}">Signup</a>
+        <a href="{% url 'account:signup' %}?next={{ next }}">Signup</a>
       </div>
     </section>
   </main>

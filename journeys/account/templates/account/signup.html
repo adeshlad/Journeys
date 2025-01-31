@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block stylesheet %}
-  <link rel="stylesheet" href="{% static 'accounts/css/styles.css' %}" />
+  <link rel="stylesheet" href="{% static 'account/css/styles.css' %}" />
 {% endblock %}
 
 {% block content %}
   <main class="flex align-items-center justify-content-center">
     <section id="auth" class="flex direction-column">
       <div class="panel login flex direction-column">
-        <form action="{% url 'accounts:signup' %}" method="post" enctype="multipart/form-data">
+        <form action="{% url 'account:signup' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
 
           {% if next != '/' %}
@@ -23,9 +23,10 @@
           {% if user_name_exists %}
             <p>User Name already exists</p>
           {% endif %}
-          
-          <input name="profile_photo" type="file" accept="image/*" /><br />
-          
+
+          <p>Profile Photo</p>
+          <input name="profile_photo" type="file" placeholder="Profile Photo" id="input-profile-photo" accept="image/*" /><br />
+
           <input required name="email" type="email" placeholder="E-Mail *" />
           {% if email_exists %}
             <p>Email already exists</p>
@@ -49,7 +50,7 @@
       
       <div class="panel register flex justify-content-center">
         <p>Already have an account?</p>
-        <a href="{% url "accounts:signin" %}?next={{ next }}">Signin</a>
+        <a href="{% url "account:signin" %}?next={{ next }}">Signin</a>
       </div>
     </section>
   </main>

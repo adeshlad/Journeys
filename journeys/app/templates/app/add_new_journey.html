@@ -8,62 +8,15 @@
 {% block content %}
   <div class="main">
     <div class="container">
-      <form id="input-container" action="" method="post" enctype="multipart/form-data">
-        <!-- Step 1 -->
-        <div class="form-step active" id="step-1">
-          <input required name="title" type="text" placeholder="Journey Title *" />
-          <input required name="start_date_time" type="text" placeholder="Journey Start Date *" />
-        </div>
+      <form class="input-container" action="{% url "app:add" %}" method="post">
+        {% csrf_token %}
 
-        <!-- Step 2 -->
-        <div class="form-step" id="step-2">
-          <table>
-            <tr>
-              <th>Location *</th>
-              <th>Arrival (Date-Time)</th>
-              <th>Departure (Date-Time)</th>
-              <th>Photos</th>
-            </tr>
-            <tr class="inputRow">
-              <td>
-                <input required type="text" name="field1[]" placeholder="Location *" />
-              </td>
-              <td>
-                <input type="datetime-local" name="field2[]" placeholder="Arrival" />
-              </td>
-              <td>
-                <input type="datetime-local" name="field3[]" placeholder="Departure" />
-              </td>
-              <td>
-                <input name="profile_photo" type="file" accept="image/*" />
-              </td>
-              <td>
-                <button type="button" id="remove">Remove</button>
-              </td>
-            </tr>
-          </table>
-          <button type="button" id="addRow">Add Row</button>
-        </div>
+        <input required name="title" type="text" placeholder="Journey Title *" />
+        <p>Journey Start Date :</p>
+        <input required name="start_date" type="date" id="start_date" />
 
-        <!-- Step 3 -->
-        <div class="form-step" id="step-3">
-          <p>
-            <strong>Name:</strong> <span id="review-name"></span>
-          </p>
-          <p>
-            <strong>Email:</strong> <span id="review-email"></span>
-          </p>
-          <p>
-            <strong>Address:</strong> <span id="review-address"></span>
-          </p>
-          <p>
-            <strong>City:</strong> <span id="review-city"></span>
-          </p>
-        </div>
-
-        <button type="button" id="prevButton" disabled>Previous</button>
-        <button type="button" id="nextButton">Next</button>
-        <button type="submit" id="submitButton" style="display: none;">Submit</button>
+        <button type="submit" id="submit">Submit</button>
+        <button type="reset" id="reset">Reset</button>
       </form>
     </div>
   </div>

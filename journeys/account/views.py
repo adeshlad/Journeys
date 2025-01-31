@@ -7,6 +7,11 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+# account page to be done
+@login_required()
+def account(request):
+    return redirect('account:signout')
+
 
 def signup(request):
     if request.method == 'POST':
@@ -36,13 +41,13 @@ def signup(request):
         user = User()
         user.first_name = first_name
         user.last_name = last_name
-
         if 'profile_photo' in request.FILES:
             user.profile_photo = request.FILES.get('profile_photo')
 
         user.user_name = user_name
         user.email = email
         user.phone_number = phone_number
+
         user.set_password(password)
         user.save()
 
@@ -51,13 +56,13 @@ def signup(request):
         if 'next' in request.POST:
             return redirect(request.POST.get('next'))
 
-        return redirect('app:index')
+        return redirect('home')
 
     elif request.method == 'GET':
         if request.user.is_authenticated:
             return render(request, 'signout.html')
 
-        next = request.GET.get('next', '')
+        next = request.GET.get('next', '/')
         return render(request, 'signup.html', {'next': next,
                                                'user_name_exists': False,
                                                'email_exists': False,
@@ -77,7 +82,7 @@ def signin(request):
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))
 
-            return redirect('app:index')
+            return redirect('home')
 
         next = request.POST.get('next', '/')
         return render(request, 'signin.html', {'next': next,
@@ -96,8 +101,8 @@ def signin(request):
 def signout(request):
     if request.method == 'POST':
         logout(request)
-        return redirect('app:index')
-    
+        return redirect('home')
+
     elif request.method == 'GET':
         if request.user.is_authenticated:
             return render(request, 'signout.html')

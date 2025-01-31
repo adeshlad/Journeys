@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'accounts'
+    'account'
 ]
 
 MIDDLEWARE = [
@@ -44,7 +44,7 @@ ROOT_URLCONF = 'journeys.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'app/templates/app', BASE_DIR / 'accounts/templates/accounts'],
+        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'account/templates/account', BASE_DIR / 'app/templates/app', BASE_DIR / 'journeys/templates/journeys'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,8 +124,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'account.User'
 
-LOGIN_URL = '/accounts/signin/'
+LOGIN_URL = '/account/signin/'
 
 LOGIN_REDIRECT_URL = '/admin/'

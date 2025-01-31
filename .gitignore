@@ -2,6 +2,6 @@ journeys/journeys/__pycache__
 journeys/media
 journeys/app/__pycache__
 journeys/app/migrations
-journeys/accounts/__pycache__
-journeys/accounts/migrations
+journeys/account/__pycache__
+journeys/account/migrations
 .vscode/

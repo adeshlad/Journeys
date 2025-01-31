@@ -6,12 +6,12 @@ from autoslug import AutoSlugField
 
 class Journey(models.Model):
     title = models.CharField(max_length=255, default="Untitled")
-    slug = AutoSlugField(populate_from='title', unique=True, default='untitled')
+    slug = AutoSlugField(populate_from='title', unique=True)
 
-    start_date_time = models.DateTimeField(blank=True, null=True)
+    start_date = models.DateField()
     total_days = models.IntegerField(blank=True, null=True)
 
-    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, related_name='journeys')
+    user = models.ForeignKey('account.User', on_delete=models.CASCADE, related_name='journeys')
 
 
 class Location(models.Model):
