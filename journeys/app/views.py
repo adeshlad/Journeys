@@ -9,11 +9,12 @@ from datetime import datetime
 
 @login_required()
 def journeys(request):
-    return redirect('app:add')
+    journeys =  Journey.objects.filter(user=request.user)
+    return render(request, 'journeys.html', {'journeys' : journeys})
 
 
 @login_required()
-def add(request):
+def add_journey(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         start_date = request.POST.get('start_date')
@@ -26,7 +27,11 @@ def add(request):
 
         journey.save()
 
-        return redirect('home')
+        return redirect('app:journeys')
 
     elif request.method == 'GET':
-        return render(request, 'add_new_journey.html')
+        return render(request, 'add_journey.html')
+
+
+def view_journey(request):
+    return None

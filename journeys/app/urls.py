@@ -8,5 +8,6 @@ app_name = 'app'
 
 urlpatterns = [
     path('', views.journeys, name="journeys"),
-    path('add/', views.add, name="add")
+    path('add_journey/', views.add_journey, name="add_journey"),
+    path('<slug:slug>/', views.journeys, name="view_journey"),
 ]

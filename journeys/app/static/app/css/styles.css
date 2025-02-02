@@ -5,12 +5,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .container{
   background-color: white;
   border: 1px solid #dbdbdb;
   padding: 10px 10px 0 10px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -48,4 +50,18 @@ button {
 
 #submit, #reset{
   width: 49.5%;
+}
+
+.list{
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 10px 10px 0 10px;
+  /* padding: 30px 20px; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.list p{
+  margin-bottom: 10px;
 }
