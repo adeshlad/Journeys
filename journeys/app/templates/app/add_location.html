@@ -8,7 +8,7 @@
 {% block content %}
   <div class="main">
     <div class="container">
-      <form class="input-container" action="{% url 'app:add_journey' %}" method="post" enctype="multipart/form-data">
+      <form class="input-container" action="{% url 'app:add_location' slug=slug %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         <p>Location Name :</p>
@@ -17,7 +17,7 @@
         <p>Arrival :</p>
         <input required name="arrival" type="datetime-local" id="arrival" min="0001-01-01T00:00" max="9999-12-31T23:59" />
         <p>Departure :</p>
-        <input required name="departure" type="datetime-local" id="departure" min="0001-01-01" max="9999-12-31" />
+        <input required name="departure" type="datetime-local" id="departure" min="0001-01-01T00:00" max="9999-12-31T23:59" />
 
         <p>Location Photos :</p>
         <input name="location_photos" type="file" placeholder="Location Photos" id="location_photos" accept="image/*" multiple /><br />
