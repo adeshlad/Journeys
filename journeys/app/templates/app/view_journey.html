@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'app/css/styles.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="main">
+    <div class="container">
+      <div class="input-container">
+        <div class="list">
+          {% for location in locations %}
+            <a href=""><p>{{ location.name }}</p></a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="input-container">
+        <a href="{% url 'app:add_location' slug=slug %}"><button>Add Location</button></a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

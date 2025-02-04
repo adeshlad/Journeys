@@ -27,8 +27,28 @@ form p {
   font-size: 14px;
 }
 
+form #journey_title{
+  width: 85.4%;
+}
+
 form #start_date{
-  width: 78.75%;
+  width: 79.4%;
+}
+
+form #location_name{
+  width: 87.7%;
+}
+
+form #arrival{
+  width: 94%;
+}
+
+form #departure{
+  width: 91.3%;
+}
+
+form #location_photos{
+  width: 87%;
 }
 
 button {

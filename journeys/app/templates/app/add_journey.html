@@ -8,12 +8,14 @@
 {% block content %}
   <div class="main">
     <div class="container">
-      <form class="input-container" action="{% url "app:add_journey" %}" method="post">
+      <form class="input-container" action="{% url 'app:add_journey' %}" method="post">
         {% csrf_token %}
 
-        <input required name="title" type="text" placeholder="Journey Title *" />
+        <p>Journey Title :</p>
+        <input required name="title" type="text"  id="journey_title"  placeholder="Journey Title *" />
+
         <p>Journey Start Date :</p>
-        <input required name="start_date" type="date" id="start_date" />
+        <input required name="start_date" type="date" id="start_date" min="0001-01-01" max="9999-12-31" />
 
         <button type="submit" id="submit">Submit</button>
         <button type="reset" id="reset">Reset</button>

@@ -9,8 +9,8 @@ from datetime import datetime
 
 @login_required()
 def journeys(request):
-    journeys =  Journey.objects.filter(user=request.user)
-    return render(request, 'journeys.html', {'journeys' : journeys})
+    journeys = Journey.objects.filter(user=request.user)
+    return render(request, 'journeys.html', {'journeys': journeys})
 
 
 @login_required()
@@ -33,5 +33,18 @@ def add_journey(request):
         return render(request, 'add_journey.html')
 
 
-def view_journey(request):
-    return None
+@login_required
+def view_journey(request, slug):
+    locations = []
+    return render(request, "view_journey.html", {'locations': locations, 'slug': slug})
+
+
+def add_location(request, slug):
+    if request.method == 'POST':
+        
+
+        return redirect('app:view_journey', slug=slug)
+
+    elif request.method == 'GET':
+        locations = []
+        return render(request, "add_location.html", {'locations': locations})

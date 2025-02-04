@@ -1,7 +1,9 @@
 journeys/journeys/__pycache__
 journeys/media
 journeys/app/__pycache__
-journeys/app/migrations
+journeys/app/migrations/**
+!journeys/app/migrations/__init__.py
 journeys/account/__pycache__
-journeys/account/migrations
+journeys/account/migrations/**
+!journeys/account/migrations/__init__.py
 .vscode/
