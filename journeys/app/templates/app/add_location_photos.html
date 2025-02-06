@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'app/css/styles.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="main">
+    <div class="container">
+      <form class="input-container" action="{% url 'app:add_location_photos' journey_slug=journey_slug location_slug=location_slug %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <p>Location Photos :</p>
+        <input name="location_photos" type="file" placeholder="Location Photos" id="add_location_photos" accept="image/*" multiple /><br />
+
+        <button type="submit" id="submit2">Submit</button>
+        <button type="reset" id="reset2">Reset</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

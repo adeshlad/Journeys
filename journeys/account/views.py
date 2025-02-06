@@ -14,6 +14,17 @@ def account(request):
 
 
 def signup(request):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            return render(request, 'signout.html')
+
+        next = request.GET.get('next', '/')
+        return render(request, 'signup.html', {'next': next,
+                                               'user_name_exists': False,
+                                               'email_exists': False,
+                                               'phone_number_exists': False,
+                                               'password_mismatched': False})
+
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -41,6 +52,7 @@ def signup(request):
         user = User()
         user.first_name = first_name
         user.last_name = last_name
+
         if 'profile_photo' in request.FILES:
             user.profile_photo = request.FILES.get('profile_photo')
 
@@ -58,19 +70,16 @@ def signup(request):
 
         return redirect('home')
 
-    elif request.method == 'GET':
+
+def signin(request):
+    if request.method == 'GET':
         if request.user.is_authenticated:
             return render(request, 'signout.html')
 
         next = request.GET.get('next', '/')
-        return render(request, 'signup.html', {'next': next,
-                                               'user_name_exists': False,
-                                               'email_exists': False,
-                                               'phone_number_exists': False,
-                                               'password_mismatched': False})
+        return render(request, 'signin.html', {'next': next,
+                                               'invalid_credentials': False})
 
-
-def signin(request):
     if request.method == 'POST':
         user_name = request.POST.get('user_name')
         password = request.POST.get('password')
@@ -88,21 +97,13 @@ def signin(request):
         return render(request, 'signin.html', {'next': next,
                                                'invalid_credentials': True})
 
-    elif request.method == 'GET':
-        if request.user.is_authenticated:
-            return render(request, 'signout.html')
-
-        next = request.GET.get('next', '/')
-        return render(request, 'signin.html', {'next': next,
-                                               'invalid_credentials': False})
-
 
 @login_required()
 def signout(request):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            return render(request, 'signout.html')
+
     if request.method == 'POST':
         logout(request)
         return redirect('home')
-
-    elif request.method == 'GET':
-        if request.user.is_authenticated:
-            return render(request, 'signout.html')

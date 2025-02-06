@@ -15,6 +15,9 @@ def journeys(request):
 
 @login_required()
 def add_journey(request):
+    if request.method == 'GET':
+        return render(request, 'add_journey.html')
+
     if request.method == 'POST':
         title = request.POST.get('title')
         start_date = request.POST.get('start_date')
@@ -28,22 +31,30 @@ def add_journey(request):
 
         return redirect('app:journeys')
 
-    elif request.method == 'GET':
-        return render(request, 'add_journey.html')
+
+@login_required()
+def delete_journey(request):
+    pass
 
 
-@login_required
-def view_journey(request, slug):
-    locations = []
-    return render(request, "view_journey.html", {'locations': locations, 'slug': slug})
+@login_required()
+def locations(request, journey_slug):
+    journey = Journey.objects.get(slug=journey_slug)
+    locations = Location.objects.filter(journey=journey)
+    return render(request, "locations.html", {'locations': locations,
+                                              'journey_slug': journey_slug})
 
 
-def add_location(request, slug):
+@login_required()
+def add_location(request, journey_slug):
+    if request.method == 'GET':
+        return render(request, "add_location.html", {'journey_slug': journey_slug})
+
     if request.method == 'POST':
-        name = request.POST.get("name")
-        arrival = request.POST.get("arrival")
-        departure = request.POST.get("departure")
-        journey = Journey.objects.get(slug=slug)
+        name = request.POST.get('name')
+        arrival = request.POST.get('arrival')
+        departure = request.POST.get('departure')
+        journey = Journey.objects.get(slug=journey_slug)
 
         location = Location()
         location.name = name
@@ -52,15 +63,39 @@ def add_location(request, slug):
         location.journey = journey
         location.save()
 
-        photos = request.FILES.getlist("location_photos")
+        photos = request.FILES.getlist('location_photos')
         for photo in photos:
             location_photo = Location_Photo()
             location_photo.photo = photo
             location_photo.location = location
             location_photo.save()
 
-        return redirect('app:view_journey', slug=slug)
+        return redirect('app:locations', journey_slug=journey_slug)
 
-    elif request.method == 'GET':
-        locations = []
-        return render(request, "add_location.html", {'locations': locations, 'slug': slug})
+
+@login_required()
+def location_photos(request, journey_slug, location_slug):
+    location = Location.objects.get(slug=location_slug)
+    photos = Location_Photo.objects.filter(location=location)
+    return render(request, "location_photos.html", {'photos': photos,
+                                                    'journey_slug': journey_slug,
+                                                    'location_slug': location_slug})
+
+
+@login_required()
+def add_location_photos(request, journey_slug, location_slug):
+    if request.method == 'GET':
+        return render(request, "add_location_photos.html", {'journey_slug': journey_slug,
+                                                            'location_slug':location_slug})
+
+    if request.method == 'POST':
+        location = Location.objects.get(slug=location_slug)
+
+        photos = request.FILES.getlist('location_photos')
+        for photo in photos:
+            location_photo = Location_Photo()
+            location_photo.photo = photo
+            location_photo.location = location
+            location_photo.save()
+
+        return redirect('app:location_photos', journey_slug=journey_slug, location_slug=location_slug)

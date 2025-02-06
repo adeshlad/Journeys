@@ -10,8 +10,8 @@
     <div class="container">
       <div class="input-container">
         <div class="list">
-          {% for journey in journeys %}
-            <a href="{% url 'app:locations' journey_slug=journey.slug %}"><p>{{ journey.title }}</p></a>
+          {% for location in locations %}
+            <a href="{% url "app:location_photos" journey_slug=journey_slug location_slug=location.slug %}"><p>{{ location.name }}</p></a>
           {% endfor %}
         </div>
       </div>
@@ -19,7 +19,7 @@
 
     <div class="container">
       <div class="input-container">
-        <a href="{% url 'app:add_journey' %}"><button>Add Journey</button></a>
+        <a href="{% url 'app:add_location' journey_slug=journey_slug %}"><button>Add Location</button></a>
       </div>
     </div>
   </div>

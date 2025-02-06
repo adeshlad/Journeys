@@ -8,7 +8,7 @@
 {% block content %}
   <div class="main">
     <div class="container">
-      <form class="input-container" action="{% url 'app:add_location' slug=slug %}" method="post" enctype="multipart/form-data">
+      <form class="input-container" action="{% url 'app:add_location' journey_slug=journey_slug %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         <p>Location Name :</p>
@@ -27,8 +27,4 @@
       </form>
     </div>
   </div>
-{% endblock %}
-
-{% block javascript %}
-  <script src="{% static 'app/js/add_new_journey.js' %}" defer></script>
 {% endblock %}

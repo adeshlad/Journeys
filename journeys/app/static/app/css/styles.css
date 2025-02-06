@@ -51,6 +51,10 @@ form #location_photos{
   width: 87%;
 }
 
+form #add_location_photos{
+  width: 70.94%;
+}
+
 button {
   border-radius: 10px;
   color: #fff;
@@ -72,11 +76,18 @@ button {
   width: 49.5%;
 }
 
+#submit2, #reset2{
+  width: 49.42%;
+}
+
+#reset2{
+  background-color: #f60000;
+}
+
 .list{
   background-color: white;
   margin-bottom: 10px;
   padding: 10px 10px 0 10px;
-  /* padding: 30px 20px; */
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -84,4 +95,23 @@ button {
 
 .list p{
   margin-bottom: 10px;
+}
+
+.main2 {
+  margin: auto;
+  max-width: 935px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-container img{
+  max-width: 200px;
+  height: auto;
+}
+
+.photos{
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 10px 10px 0 10px;
 }

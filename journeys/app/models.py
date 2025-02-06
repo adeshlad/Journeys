@@ -16,9 +16,7 @@ class Journey(models.Model):
 
 class Location(models.Model):
     name = models.CharField(max_length=255, default='Untitled')
-
-    latitude = models.FloatField(blank=True, null=True)
-    longitude = models.FloatField(blank=True, null=True)
+    slug = AutoSlugField(populate_from='name', unique=True)
 
     arrival = models.DateTimeField(blank=True, null=True)
     departure = models.DateTimeField(blank=True, null=True)
@@ -28,6 +26,5 @@ class Location(models.Model):
 
 class Location_Photo(models.Model):
     photo = models.ImageField(upload_to='locations/location_photos/')
-    caption = models.CharField(max_length=500, blank=True, null=True)
 
     location = models.ForeignKey("app.Location", on_delete=models.CASCADE, related_name='photos')
