@@ -28,11 +28,11 @@ form p {
 }
 
 form #journey_title {
-  width: 85.4%;
+  width: 84.4%;
 }
 
 form #start_date {
-  width: 79.4%;
+  width: 78.4%;
 }
 
 form #location_name {
@@ -52,7 +52,7 @@ form #location_photos {
 }
 
 form #add_location_photos {
-  width: 70.94%;
+  width: 69.94%;
 }
 
 button {
@@ -113,9 +113,6 @@ button {
 .main2 {
   margin: auto;
   max-width: 935px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .input-container img {
