@@ -13,7 +13,9 @@ urlpatterns = [
 
     path('<slug:journey_slug>/', views.locations, name="locations"),
     path('<slug:journey_slug>/add_location/', views.add_location, name="add_location"),
+    path('<slug:journey_slug>/locations/<slug:location_slug>/delete/', views.delete_location, name="delete_location"),
 
     path('<slug:journey_slug>/locations/<slug:location_slug>/', views.location_photos, name="location_photos"),
     path('<slug:journey_slug>/locations/<slug:location_slug>/add_location_photos/', views.add_location_photos, name="add_location_photos"),
+    path('<slug:journey_slug>/locations/<slug:location_slug>/location_photos/<int:photo_id>/delete/', views.delete_location_photo, name="delete_location_photo"),
 ]

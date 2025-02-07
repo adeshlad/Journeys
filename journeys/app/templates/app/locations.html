@@ -10,8 +10,14 @@
     <div class="container">
       <div class="input-container">
         <div class="list">
+          {% csrf_token %}
+          <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+
           {% for location in locations %}
-            <a href="{% url "app:location_photos" journey_slug=journey_slug location_slug=location.slug %}"><p>{{ location.name }}</p></a>
+            <div class="list-item">
+              <a href="{% url 'app:location_photos' journey_slug=journey_slug location_slug=location.slug %}"><p>{{ location.name }}</p></a>
+              <button id="reset" onclick="deleteLocation('{{ journey_slug }}', '{{ location.slug }}')">Delete</button>
+            </div>
           {% endfor %}
         </div>
       </div>
@@ -23,4 +29,8 @@
       </div>
     </div>
   </div>
+{% endblock %}
+
+{% block javascript %}
+  <script src="{% static 'app/js/script.js' %}" defer></script>
 {% endblock %}

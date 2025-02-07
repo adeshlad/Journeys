@@ -12,15 +12,25 @@
         <a href="{% url 'app:add_location_photos' journey_slug=journey_slug location_slug=location_slug %}"><button>Add Photos</button></a>
       </div>
     </div>
-    </div>
 
     <div class="container">
       <div class="input-container">
         <div class="photos">
+          {% csrf_token %}
+          <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+
           {% for photo in photos %}
-            <a href="{{photo.photo.url}}"><img src="{{photo.photo.url}}" alt=""></a>
+            <div class="list-item">
+              <a href="{{ photo.photo.url }}"><img src="{{ photo.photo.url }}" alt="" /></a>
+              <button id="delete_photo" onclick="deleteLocationPhoto('{{ journey_slug }}', '{{ location_slug }}', '{{ photo.id }}')">Delete</button>
+            </div>
           {% endfor %}
         </div>
       </div>
     </div>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+  <script src="{% static 'app/js/script.js' %}" defer></script>
 {% endblock %}

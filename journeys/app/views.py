@@ -33,8 +33,11 @@ def add_journey(request):
 
 
 @login_required()
-def delete_journey(request):
-    pass
+def delete_journey(request, journey_slug):
+    if request.method == 'POST':
+        journey = Journey.objects.get(slug=journey_slug)
+        journey.delete()
+        return redirect('app:journeys')
 
 
 @login_required()
@@ -74,6 +77,15 @@ def add_location(request, journey_slug):
 
 
 @login_required()
+def delete_location(request, journey_slug, location_slug):
+    if request.method == 'POST':
+        journey = Journey.objects.get(slug=journey_slug)
+        location = Location.objects.get(slug=location_slug, journey=journey)
+        location.delete()
+        return redirect('app:locations', journey_slug=journey_slug)
+
+
+@login_required()
 def location_photos(request, journey_slug, location_slug):
     location = Location.objects.get(slug=location_slug)
     photos = Location_Photo.objects.filter(location=location)
@@ -98,4 +110,14 @@ def add_location_photos(request, journey_slug, location_slug):
             location_photo.location = location
             location_photo.save()
 
+        return redirect('app:location_photos', journey_slug=journey_slug, location_slug=location_slug)
+
+
+@login_required()
+def delete_location_photo(request, journey_slug, location_slug, photo_id):
+    if request.method == 'POST':
+        journey = Journey.objects.get(slug=journey_slug)
+        location = Location.objects.get(slug=location_slug, journey=journey)
+        photo = Location_Photo.objects.get(id=photo_id, location=location)
+        photo.delete()
         return redirect('app:location_photos', journey_slug=journey_slug, location_slug=location_slug)
